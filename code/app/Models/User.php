@@ -9,10 +9,11 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
-    use Authenticatable, Authorizable, HasFactory, MapStd;
+    use Authenticatable, Authorizable, HasFactory, MapStd, HasRoles;
 
     /**
      * Default connection of the model
@@ -72,4 +73,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'password',
         'remember_token',
     ];
+
+    /**
+     * Has one Models\SMSto\User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function user_smsto()
+    {
+        return $this->hasOne(SMSto\User::class, '_id', 'id');
+    }
 }

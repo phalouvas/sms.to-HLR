@@ -17,6 +17,6 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->group(['prefix' => 'v1', 'middleware' => ['auth']], function () use ($router) {
+$router->group(['prefix' => 'v1', 'middleware' => ['auth', 'check_permission:view_campaigns_and_messages_log']], function () use ($router) {
     $router->get('/verify/number', 'ExampleController@verify');
 });

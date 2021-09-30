@@ -78,6 +78,7 @@ $app->configure('app');
 
 $app->routeMiddleware([
      'auth' => App\Http\Middleware\Authenticate::class,
+     'check_permission' => \App\Http\Middleware\CheckPermission::class,
  ]);
 
 /*
@@ -95,6 +96,10 @@ $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+
+$app->configure('permission');
+$app->alias('cache', \Illuminate\Cache\CacheManager::class);
+$app->register(Spatie\Permission\PermissionServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

@@ -58,6 +58,25 @@ return [
             ],
         ],
 
+        'smsto_mysql' => [
+            'driver' => 'mysql',
+            'host' => env('SMSTO_DB_HOST', '127.0.0.1'),
+            'port' => env('SMSTO_DB_PORT', 3306),
+            'database' => env('SMSTO_DB_DATABASE', 'forge'),
+            'username' => env('SMSTO_DB_USERNAME', 'forge'),
+            'password' => env('SMSTO_DB_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => env('DB_CHARSET', 'utf8mb4'),
+            'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
+            'prefix' => env('DB_PREFIX', ''),
+            'strict' => env('DB_STRICT_MODE', false),
+            'engine' => env('DB_ENGINE', null),
+            'timezone' => env('DB_TIMEZONE', '+00:00'),
+            'options'   => [
+                PDO::ATTR_PERSISTENT => true,
+            ],
+        ],
+
         'auth_mysql' => [
             'driver' => 'mysql',
             'host' => env('AUTH_DB_HOST', '127.0.0.1'),
