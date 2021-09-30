@@ -1,4 +1,4 @@
-FROM poupou/alpine-nginx-php7.4fpm:latest
+FROM poupou/alpine-nginx-php8.0fpm:latest
 LABEL maintainer="Intergo Interactive Ltd. <inquiries@intergo.com.cy>"
 
 ##########################################################################
@@ -15,8 +15,8 @@ RUN composer self-update --2
 RUN touch /tmp/xdebug.log && chmod 776 /tmp/xdebug.log
 
 #APPLY APCU SETTINGS
-RUN echo "apc.enable_cli=1" >> /etc/php7/php.ini
-RUN echo "apc.shm_size=128M" >> /etc/php7/php.ini
+RUN echo "apc.enable_cli=1" >> /etc/php8/php.ini
+RUN echo "apc.shm_size=128M" >> /etc/php8/php.ini
 
 WORKDIR /var/www
 
