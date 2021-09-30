@@ -1,0 +1,21 @@
+version: '3.6'
+
+services:
+
+  hlr:
+    container_name: ${COMPOSE_PROJECT_NAME}_hlr
+    build: .
+    hostname: hlr
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${COMPOSE_NETWORK_NAME}_hlr.rule=Host(`hlr.${COMPOSE_BASE_DOMAIN}`)"
+      - "traefik.http.routers.${COMPOSE_NETWORK_NAME}_hlr.tls=true"
+      - "traefik.http.routers.${COMPOSE_NETWORK_NAME}_hlr.entrypoints=websecure"
+    volumes:
+      - ./setup.sh:/setup.sh
+      - ../code/:/var/www//:rw
+
+networks:
+  default:
+    name: ${COMPOSE_NETWORK_NAME}-local-net
+    driver: bridge

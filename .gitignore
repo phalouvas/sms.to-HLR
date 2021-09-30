@@ -1,0 +1,16 @@
+code/vendor
+.idea
+code/node_modules
+code/node_modules_in_container
+code/.env
+code/.phpunit.result.cache
+code/.env.dusk
+*.DS_Store
+.vscode
+code/npm-debug.log
+code/storage/debugbar
+code/.vscode/
+
+code/storage/oauth-*
+nbproject
+nbproject/

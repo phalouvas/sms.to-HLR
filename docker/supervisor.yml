@@ -1,0 +1,22 @@
+version: '3.6'
+
+services:
+
+  supervisor:
+    container_name: ${COMPOSE_PROJECT_NAME}_supervisor_hlr
+    build:
+      context: ./supervisor
+    hostname: supervisor-hlr
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${COMPOSE_NETWORK_NAME}_supervisor_hlr.rule=Host(`supervisor-hlr.${COMPOSE_BASE_DOMAIN}`)"
+      - "traefik.http.routers.${COMPOSE_NETWORK_NAME}_supervisor_hlr.tls=true"
+      - "traefik.http.routers.${COMPOSE_NETWORK_NAME}_supervisor_hlr.entrypoints=websecure"
+      - "traefik.port=8001"
+    volumes:
+      - ../code:/var/www//:rw
+
+networks:
+  default:
+    name: ${COMPOSE_NETWORK_NAME}-local-net
+    driver: bridge
